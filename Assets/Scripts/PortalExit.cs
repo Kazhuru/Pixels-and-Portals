@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PortalExit : MonoBehaviour
+{
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            player.SetPlayerOnWinStatus();
+            gameObject.GetComponent<Animator>().SetTrigger("destroy");
+
+        }
+    }
+
+    public void AnimationEventNextLevel()
+    {
+        FindObjectOfType<SceneLoader>().NextLevel();
+    }
+}
